@@ -1,22 +1,18 @@
 export const shopNav = [
   {
     href: '/',
-    text: 'Home',
+    text: 'Inicio',
   },
   {
     href: '/products',
-    text: 'Shop',
+    text: 'Tienda',
   },
   {
     href: '/about',
-    text: 'About',
+    text: 'Nosotros',
   },
   {
     href: '/contact',
-    text: 'Contact',
-  },
-  {
-    href: '/admin',
-    text: 'Admin',
+    text: 'Contacto',
   },
 ]

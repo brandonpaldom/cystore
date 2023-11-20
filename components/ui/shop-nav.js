@@ -5,13 +5,12 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-import ListItem from '@/components/list-item'
-import Logo from '@/components/logo'
+import ListItem from '@/components/ui/filter-item'
+import Logo from '@/components/ui/logo'
 import MenuIcon from '@/components/icons/menu'
 import ShoppingCartIcon from '@/components/icons/shopping-cart'
 
 import { shopNav } from '@/data/shop-nav'
-import { categories } from '@/data/categories'
 
 import clsx from 'clsx'
 
@@ -25,7 +24,7 @@ export default function ShopNav() {
 
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex h-16 max-w-screen-xl flex-wrap items-center justify-between px-6">
+      <nav className="mx-auto flex h-16 max-w-screen-2xl flex-wrap items-center justify-between px-6">
         <Logo className="order-2 md:order-1" />
         <button className="order-1 md:hidden" onClick={toggleMenu}>
           <MenuIcon />
@@ -45,15 +44,19 @@ export default function ShopNav() {
             </li>
           ))}
         </ul>
-        <Link href="/cart" className="order-3">
-          <ShoppingCartIcon />
-        </Link>
+        <div className="order-3 flex items-center gap-4">
+          <Link href="/cart">
+            <ShoppingCartIcon />
+          </Link>
+          <Link href="/admin" className="btn-sm btn-ghost">
+            Acceder
+          </Link>
+        </div>
       </nav>
 
       <div
         className={clsx(
-          'absolute left-0 top-16 z-10 w-full bg-neutral-50',
-          'md:hidden',
+          'absolute left-0 top-16 z-10 w-full border-t border-neutral-100 bg-white shadow-lg md:hidden',
           !isMenuOpen && 'hidden',
         )}
       >
@@ -68,20 +71,6 @@ export default function ShopNav() {
             />
           ))}
         </ul>
-        <div className="flex flex-col gap-4 p-6">
-          <h2 className="text-lg font-bold">Collections</h2>
-          <ul className="flex flex-col gap-4">
-            {categories.map((category) => (
-              <ListItem
-                key={category}
-                href={category}
-                text={category}
-                pathname={pathname}
-                onClick={toggleMenu}
-              />
-            ))}
-          </ul>
-        </div>
       </div>
     </header>
   )

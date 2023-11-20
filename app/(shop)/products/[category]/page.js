@@ -1,13 +1,9 @@
-import ProductGrid from '@/components/product-grid'
+import ProductGrid from '@/components/ui/product-grid'
 
-import { products } from '@/data/products'
+import { getProductsByCategory } from '@/lib/products'
 
 export default function Page({ params }) {
   const { category } = params
 
-  const filteredProducts = products.filter((product) => {
-    return product.category === category
-  })
-
-  return <ProductGrid products={filteredProducts} />
+  return <ProductGrid products={getProductsByCategory(category)} />
 }

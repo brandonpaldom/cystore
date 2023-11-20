@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import clsx from 'clsx'
 
-export default function ListItem({ href, text, pathname, onClick }) {
+export default function FilterItem({ href, text, pathname, onClick }) {
   const linkClass = clsx(
     'capitalize',
     pathname === href && 'underline decoration-2 decoration-indigo-600',

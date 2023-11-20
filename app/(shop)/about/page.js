@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Page() {
   return (
-    <div className="flex h-[calc(100dvh-8rem)] flex-col items-center justify-center gap-4 rounded-lg bg-neutral-50 px-4 text-center">
+    <div className="flex flex-col items-start gap-4">
       <h2 className="text-4xl font-bold">About</h2>
       <p className="text-lg">
         This page is under construction. Please check back later.

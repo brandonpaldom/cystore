@@ -1,5 +1,5 @@
-import Footer from '@/components/footer'
-import ShopNav from '@/components/shop-nav'
+import Footer from '@/components/ui/footer'
+import ShopNav from '@/components/ui/shop-nav'
 import Link from 'next/link'
 
 export default function NotFound() {
