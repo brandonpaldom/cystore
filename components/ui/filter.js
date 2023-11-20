@@ -19,7 +19,6 @@ export default function Filter() {
 
   return (
     <>
-      {/* Mobile */}
       <section className="flex flex-col gap-4 rounded-lg bg-white p-4 md:hidden">
         <button className="icon-btn btn-secondary" onClick={toggleShow}>
           <FilterListIcon />
@@ -32,7 +31,7 @@ export default function Filter() {
               {categories.map((category) => (
                 <ListItem
                   key={category.slug}
-                  href={`/categories/${category.slug}`}
+                  href={`/products/${category.slug}`}
                   text={category.name}
                   pathname={pathname}
                 />
@@ -42,7 +41,6 @@ export default function Filter() {
         )}
       </section>
 
-      {/* Desktop */}
       <section className="hidden h-max w-[320px] flex-col gap-2 rounded-lg bg-white p-4 md:flex">
         <p className="font-bold">Categorías</p>
         <ul className="flex flex-col">
