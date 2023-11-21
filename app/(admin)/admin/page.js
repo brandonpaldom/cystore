@@ -1,14 +1,16 @@
 import Link from 'next/link'
 
 import { products } from '@/data/products'
+import Button from '@/components/ui/button'
+import { formatCurrency } from '@/lib/format-currency'
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="card flex flex-col gap-4">
       <h2>Manage Products</h2>
-      <table className="w-full">
+      <table className="w-full text-sm">
         <thead>
-          <tr className="border-b transition-all duration-300 hover:bg-neutral-50">
+          <tr className="border-b">
             {['Name', 'Price', 'Category', 'Actions'].map((item) => (
               <th
                 key={item}
@@ -21,26 +23,17 @@ export default function Page() {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr
-              key={product.id}
-              className="border-b transition-all duration-300 hover:bg-neutral-50"
-            >
+            <tr key={product.id} className="border-b">
               <td className="p-4">{product.name}</td>
-              <td className="p-4">${product.price}.00</td>
+              <td className="p-4">{formatCurrency(product.price)}</td>
               <td className="p-4">{product.category}</td>
               <td className="flex gap-2 p-4">
-                <Link
-                  href={`/admin/products/${product.slug}`}
-                  className="btn-sm btn-primary"
-                >
+                <Button size="sm" color="primary">
                   Edit
-                </Link>
-                <Link
-                  href={`/admin/products/${product.slug}`}
-                  className="btn-sm btn-outline"
-                >
+                </Button>
+                <Button size="sm" color="ghost">
                   Delete
-                </Link>
+                </Button>
               </td>
             </tr>
           ))}
