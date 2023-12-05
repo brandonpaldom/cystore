@@ -1,13 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-
 import { usePathname } from 'next/navigation'
-
-import { categories } from '@/data/categories'
-
 import ListItem from './filter-item'
 import FilterListIcon from '../icons/filter-list'
+import categories from '@/data/categories.json'
 
 export default function Filter() {
   const pathname = usePathname()
@@ -27,7 +24,6 @@ export default function Filter() {
           <div className="flex w-full flex-col gap-2">
             <p className="font-bold">Categorías</p>
             <ul className="grid grid-cols-2 gap-2">
-              <ListItem href="/products" text="Todas" pathname={pathname} />
               {categories.map((category) => (
                 <ListItem
                   key={category.slug}
@@ -41,10 +37,9 @@ export default function Filter() {
         )}
       </section>
 
-      <section className="hidden h-max w-[320px] flex-col gap-2 rounded-lg bg-white p-4 md:flex">
+      <section className="hidden h-max min-w-[200px] flex-col gap-2 rounded-lg bg-white p-4 md:flex">
         <p className="font-bold">Categorías</p>
         <ul className="flex flex-col">
-          <ListItem href="/products" text="Todas" pathname={pathname} />
           {categories.map((category) => (
             <ListItem
               key={category.slug}

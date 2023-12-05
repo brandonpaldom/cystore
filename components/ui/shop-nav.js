@@ -1,21 +1,20 @@
 'use client'
 
-import { useState } from 'react'
-
+import { useContext, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-
+import CartContext from '@/context/CartContext'
 import ListItem from '@/components/ui/filter-item'
 import Logo from '@/components/ui/logo'
 import MenuIcon from '@/components/icons/menu'
 import ShoppingCartIcon from '@/components/icons/shopping-cart'
-
-import { shopNav } from '@/data/shop-nav'
-
+import Button from '@/components/ui/button'
+import shopNav from '@/data/shop-nav.json'
 import clsx from 'clsx'
 
 export default function ShopNav() {
   const pathname = usePathname()
+  const { quantity } = useContext(CartContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   function toggleMenu() {
@@ -45,11 +44,14 @@ export default function ShopNav() {
           ))}
         </ul>
         <div className="order-3 flex items-center gap-4">
-          <Link href="/cart">
+          <Link href="/cart" className="flex items-center gap-1">
             <ShoppingCartIcon />
+            <span className="font-semibold text-neutral-700">({quantity})</span>
           </Link>
-          <Link href="/admin" className="btn-sm btn-ghost">
-            Acceder
+          <Link href="/auth/login">
+            <Button color="secondary" size="sm">
+              Acceder
+            </Button>
           </Link>
         </div>
       </nav>

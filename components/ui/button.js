@@ -4,6 +4,8 @@ export default function Button({
   children,
   color = 'primary',
   size = 'default',
+  width = 'min',
+  type = 'button',
   ...props
 }) {
   return (
@@ -14,7 +16,10 @@ export default function Button({
         color === 'primary' && 'btn-primary',
         color === 'secondary' && 'btn-secondary',
         color === 'ghost' && 'btn-ghost',
+        width === 'min' && 'w-max',
+        width === 'full' && 'w-full',
       )}
+      type={type}
       {...props}
     >
       {children}

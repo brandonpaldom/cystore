@@ -1,5 +1,5 @@
-import Footer from '@/components/ui/footer'
 import ShopNav from '@/components/ui/shop-nav'
+import Footer from '@/components/ui/footer'
 
 export default function Layout({ children }) {
   return (

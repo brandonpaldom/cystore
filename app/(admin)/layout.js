@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <AdminNav />
-      <main className="mx-auto min-h-[calc(100dvh-8rem)] max-w-screen-2xl p-6">
+      <main className="mx-auto min-h-[calc(100dvh-8rem)] max-w-screen-2xl">
         {children}
       </main>
       <Footer />

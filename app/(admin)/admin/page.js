@@ -1,7 +1,5 @@
-import Link from 'next/link'
-
-import { products } from '@/data/products'
 import Button from '@/components/ui/button'
+import products from '@/mocks/products.json'
 import { formatCurrency } from '@/lib/format-currency'
 
 export default function Page() {
@@ -10,11 +8,11 @@ export default function Page() {
       <h2>Manage Products</h2>
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b">
+          <tr className="">
             {['Name', 'Price', 'Category', 'Actions'].map((item) => (
               <th
                 key={item}
-                className="h-12 px-4 text-left font-normal text-neutral-600"
+                className="h-12 border-b px-4 text-left font-normal text-neutral-600"
               >
                 {item}
               </th>
@@ -23,7 +21,7 @@ export default function Page() {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id} className="border-b">
+            <tr key={product.id} className="border-t">
               <td className="p-4">{product.name}</td>
               <td className="p-4">{formatCurrency(product.price)}</td>
               <td className="p-4">{product.category}</td>

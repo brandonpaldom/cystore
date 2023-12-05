@@ -1,5 +1,6 @@
 import { GeistSansNonVariable } from 'geist/font/sans-non-variable'
 import './globals.css'
+import CartProvider from '@/context/CartProvider'
 
 export const metadata = {
   title: 'Cystore',
@@ -12,7 +13,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${GeistSansNonVariable.className} bg-neutral-100 antialiased`}
       >
-        {children}
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   )
