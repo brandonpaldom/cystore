@@ -1,45 +1,69 @@
-export const initialState = []
-
-export const actionTypes = {
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
+export const ACTIONS_TYPES = {
+  ADD_TO_CART: 'ADD_TO_CART',
+  REMOVE_FROM_CART: 'REMOVE_FROM_CART',
   CLEAR_CART: 'CLEAR_CART',
 }
 
+export const updateLocalStorage = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart))
+}
+
+const UPDATE_CART_BY_ACTION = {
+  [ACTIONS_TYPES.INITIALIZE_CART]: (cart, action) => action.payload,
+  [ACTIONS_TYPES.ADD_TO_CART]: (cart, action) => {
+    const { id } = action.payload
+    const productInCartIndex = cart.findIndex((item) => item.id === id)
+
+    if (productInCartIndex >= 0) {
+      const updatedCart = [
+        ...cart.slice(0, productInCartIndex),
+        {
+          ...cart[productInCartIndex],
+          quantity: cart[productInCartIndex].quantity + 1,
+        },
+        ...cart.slice(productInCartIndex + 1),
+      ]
+
+      updateLocalStorage(updatedCart)
+      return updatedCart
+    }
+
+    const updatedCart = [...cart, { ...action.payload, quantity: 1 }]
+    updateLocalStorage(updatedCart)
+    return updatedCart
+  },
+  [ACTIONS_TYPES.REMOVE_FROM_CART]: (cart, action) => {
+    const { id } = action.payload
+    const productInCartIndex = cart.findIndex((item) => item.id === id)
+
+    if (productInCartIndex >= 0) {
+      if (cart[productInCartIndex].quantity > 1) {
+        const updatedCart = [
+          ...cart.slice(0, productInCartIndex),
+          {
+            ...cart[productInCartIndex],
+            quantity: cart[productInCartIndex].quantity - 1,
+          },
+          ...cart.slice(productInCartIndex + 1),
+        ]
+
+        updateLocalStorage(updatedCart)
+        return updatedCart
+      } else {
+        const updatedCart = cart.filter((item) => item.id !== id)
+        updateLocalStorage(updatedCart)
+        return updatedCart
+      }
+    }
+  },
+  [ACTIONS_TYPES.CLEAR_CART]: () => {
+    updateLocalStorage([])
+    return []
+  },
+}
+
 export const cartReducer = (state, action) => {
-  switch (action.type) {
-    case actionTypes.ADD_ITEM: {
-      const exist = state.find((item) => item.id === action.payload.id)
-
-      if (exist) {
-        const newCart = state.map((item) =>
-          item.id === action.payload.id
-            ? { ...exist, quantity: exist.quantity + 1 }
-            : item,
-        )
-        return newCart
-      } else {
-        const newCart = [...state, { ...action.payload, quantity: 1 }]
-        return newCart
-      }
-    }
-    case actionTypes.REMOVE_ITEM: {
-      const exist = state.find((item) => item.id === action.payload)
-
-      if (exist.quantity === 1) {
-        const newCart = state.filter((item) => item.id !== action.payload)
-        return newCart
-      } else {
-        const newCart = state.map((item) =>
-          item.id === action.payload
-            ? { ...exist, quantity: exist.quantity - 1 }
-            : item,
-        )
-        return newCart
-      }
-    }
-    case actionTypes.CLEAR_CART: {
-      return initialState
-    }
-  }
+  const { type } = action
+  const updateCart = UPDATE_CART_BY_ACTION[type]
+  return updateCart ? updateCart(state, action) : state
 }

@@ -1,10 +1,12 @@
 import { GeistSansNonVariable } from 'geist/font/sans-non-variable'
 import './globals.css'
-import CartProvider from '@/context/CartProvider'
+import { ClerkProvider } from '@clerk/nextjs'
+import { CartProvider } from '@/context/CartContext'
 
 export const metadata = {
   title: 'Cystore',
-  description: 'A simple e-commerce store built with Next.js',
+  description:
+    'Explora lo último en tecnología avanzada, donde la innovación y el diseño elegante se fusionan para revolucionar tu mundo.',
 }
 
 export default function RootLayout({ children }) {
@@ -13,7 +15,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${GeistSansNonVariable.className} bg-neutral-100 antialiased`}
       >
-        <CartProvider>{children}</CartProvider>
+        <ClerkProvider>
+          <CartProvider>{children}</CartProvider>
+        </ClerkProvider>
       </body>
     </html>
   )

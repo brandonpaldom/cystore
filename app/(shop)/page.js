@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import MainHero from '@/components/ui/main-hero'
-import CategoriesList from '@/components/ui/categories-list'
+import MainHero from '@/components/home/main-hero'
+import CategoriesList from '@/components/home/categories-list'
 import RelatedProducts from '@/components/products/related-products'
 import CategoriesLoader from '@/components/loaders/categories-loader'
 import RelatedProductsLoader from '@/components/loaders/related-products-loader'

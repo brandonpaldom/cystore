@@ -1,18 +1,17 @@
-import { useContext } from 'react'
 import Image from 'next/image'
-import CartContext from '@/context/CartContext'
-import Button from '../ui/button'
-import { formatCurrency } from '@/lib/format-currency'
+import { useCart } from '@/hooks/useCart'
+import Button from '@/components/ui/button'
+import { formatCurrency } from '@/utils/format-currency'
 
 export default function CartItem({ cart }) {
-  const { addToCart, removeFromCart } = useContext(CartContext)
+  const { addToCart, removeFromCart } = useCart()
 
   const handleAddToCart = () => {
     addToCart(cart)
   }
 
   const handleRemoveFromCart = () => {
-    removeFromCart(cart.id)
+    removeFromCart(cart)
   }
 
   return (

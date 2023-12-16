@@ -1,12 +1,11 @@
 'use client'
 
-import { useContext } from 'react'
 import Link from 'next/link'
-import CartContext from '@/context/CartContext'
-import Button from '../ui/button'
+import { useCart } from '@/hooks/useCart'
+import Button from '@/components/ui/button'
 
 export default function AddToCart({ product }) {
-  const { addToCart, isInCart } = useContext(CartContext)
+  const { addToCart, isInCart } = useCart()
 
   const handleAddToCart = () => {
     addToCart(product)

@@ -4,6 +4,19 @@ import RelatedProducts from '@/components/products/related-products'
 import ProductDetailLoader from '@/components/loaders/product-detail-loader'
 import RelatedProductsLoader from '@/components/loaders/related-products-loader'
 
+export async function generateMetadata({ params }) {
+  const { slug } = params
+
+  const product = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/product/${slug}`,
+  ).then((res) => res.json())
+
+  return {
+    title: `${product.name} | Cystore`,
+    description: product.description,
+  }
+}
+
 export default async function Page({ params }) {
   const { slug } = params
 

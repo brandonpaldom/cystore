@@ -1,13 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatCurrency } from '@/lib/format-currency'
+import { getRelatedProducts } from '@/utils/products'
+import { formatCurrency } from '@/utils/format-currency'
 
 export default async function RelatedProducts() {
-  const products = await fetch('http://localhost:3000/api/products/all', {
-    cache: 'no-store',
-  })
-    .then((res) => res.json())
-    .then((data) => data.slice(0, 8))
+  const products = await getRelatedProducts()
 
   return (
     <div className="flex snap-x snap-mandatory gap-4 overflow-auto pb-6">

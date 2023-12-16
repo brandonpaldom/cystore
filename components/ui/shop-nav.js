@@ -1,9 +1,9 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import CartContext from '@/context/CartContext'
+import { useCart } from '@/hooks/useCart'
 import ListItem from '@/components/ui/filter-item'
 import Logo from '@/components/ui/logo'
 import MenuIcon from '@/components/icons/menu'
@@ -11,10 +11,13 @@ import ShoppingCartIcon from '@/components/icons/shopping-cart'
 import Button from '@/components/ui/button'
 import shopNav from '@/data/shop-nav.json'
 import clsx from 'clsx'
+import { UserButton, SignInButton } from '@clerk/nextjs'
+import { SignedIn } from '@clerk/nextjs'
+import { SignedOut } from '@clerk/nextjs'
 
 export default function ShopNav() {
   const pathname = usePathname()
-  const { quantity } = useContext(CartContext)
+  const { quantity } = useCart()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   function toggleMenu() {
@@ -48,11 +51,21 @@ export default function ShopNav() {
             <ShoppingCartIcon />
             <span className="font-semibold text-neutral-700">({quantity})</span>
           </Link>
-          <Link href="/auth/login">
-            <Button color="secondary" size="sm">
-              Acceder
-            </Button>
-          </Link>
+          <SignedIn>
+            <UserButton />
+            <Link href="/admin/products">
+              <Button size="sm" color="secondary">
+                Administrar
+              </Button>
+            </Link>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton afterSignInUrl="/admin/products">
+              <Button size="sm" color="secondary">
+                Ingresar
+              </Button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </nav>
 

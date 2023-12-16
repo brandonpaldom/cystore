@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatCurrency } from '@/lib/format-currency'
+import { formatCurrency } from '@/utils/format-currency'
 
 export default function ProductItem({ product }) {
   return (

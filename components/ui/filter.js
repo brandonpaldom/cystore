@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import ListItem from './filter-item'
-import FilterListIcon from '../icons/filter-list'
+import FilterItem from '@/components/ui/filter-item'
+import FilterListIcon from '@/components/icons/filter-list'
 import categories from '@/data/categories.json'
 
 export default function Filter() {
@@ -25,7 +25,7 @@ export default function Filter() {
             <p className="font-bold">Categorías</p>
             <ul className="grid grid-cols-2 gap-2">
               {categories.map((category) => (
-                <ListItem
+                <FilterItem
                   key={category.slug}
                   href={`/products/${category.slug}`}
                   text={category.name}
@@ -41,7 +41,7 @@ export default function Filter() {
         <p className="font-bold">Categorías</p>
         <ul className="flex flex-col">
           {categories.map((category) => (
-            <ListItem
+            <FilterItem
               key={category.slug}
               href={`/products/${category.slug}`}
               text={category.name}
