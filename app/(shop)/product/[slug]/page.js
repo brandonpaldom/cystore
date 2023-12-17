@@ -7,9 +7,9 @@ import RelatedProductsLoader from '@/components/loaders/related-products-loader'
 export async function generateMetadata({ params }) {
   const { slug } = params
 
-  const product = await fetch(`${process.env.VERCEL_URL}/product/${slug}`).then(
-    (res) => res.json(),
-  )
+  const product = await fetch(
+    `https://${process.env.VERCEL_URL}/product/${slug}`,
+  ).then((res) => res.json())
 
   return {
     title: `${product.name} | Cystore`,
