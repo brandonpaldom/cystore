@@ -1,6 +1,6 @@
 export const getProducts = async () => {
   const res = await fetch(
-    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/products/all`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products/all`,
   )
 
   if (!res.ok) {
@@ -14,7 +14,7 @@ export const getProducts = async () => {
 
 export const getProductsByCategory = async (category) => {
   const res = await fetch(
-    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/products/${category}`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products/${category}`,
   )
 
   if (!res.ok) {
@@ -28,7 +28,7 @@ export const getProductsByCategory = async (category) => {
 
 export const getProductBySlug = async (slug) => {
   const res = await fetch(
-    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/product/${slug}`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/${slug}`,
   )
 
   if (!res.ok) {
@@ -42,7 +42,7 @@ export const getProductBySlug = async (slug) => {
 
 export const getRelatedProducts = async () => {
   const res = await fetch(
-    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/products/all`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/products/all`,
   )
 
   if (!res.ok) {
