@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
   const { slug } = params
 
   const product = await fetch(
-    `https://${process.env.VERCEL_URL}/product/${slug}`,
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/product/${slug}`,
   ).then((res) => res.json())
 
   return {
