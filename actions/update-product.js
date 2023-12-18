@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { db, storage } from 'lib/firebase/firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
@@ -51,6 +51,5 @@ export async function updateProduct(formData, slug) {
 
   await updateDoc(productRef, updatedProduct)
 
-  revalidatePath('/admin/products')
-  redirect('/admin/products')
+  revalidateTag('products')
 }

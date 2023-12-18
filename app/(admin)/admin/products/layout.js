@@ -4,6 +4,7 @@ export default function Layout(props) {
       {props.children}
       {props.create}
       {props.edit}
+      {props.delete}
     </>
   )
 }

@@ -1,5 +1,12 @@
 export const getProducts = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/all`)
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products/all`,
+    {
+      next: {
+        tags: ['products'],
+      },
+    },
+  )
 
   if (!res.ok) {
     throw new Error('Something went wrong!')

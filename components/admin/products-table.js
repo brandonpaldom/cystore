@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Button from '@/components/ui/button'
 import { getProducts } from '@/utils/products'
 import { formatCurrency } from '@/utils/format-currency'
-import DeleteProductButton from './delete-product-button'
 
 export default async function ProductsTable() {
   const products = await getProducts()
@@ -39,8 +38,14 @@ export default async function ProductsTable() {
               <td className="max-w-[256px]">
                 <p className="w-full truncate">{product.description}</p>
               </td>
-              <td>{formatCurrency(product.price)}</td>
-              <td>{product.category}</td>
+              <td>
+                <p>{formatCurrency(product.price)}</p>
+              </td>
+              <td>
+                <span className="badge badge-secondary">
+                  {product.category}
+                </span>
+              </td>
               <td>
                 <div className="flex items-center gap-2">
                   <Link
@@ -51,7 +56,14 @@ export default async function ProductsTable() {
                       Editar
                     </Button>
                   </Link>
-                  <DeleteProductButton slug={product.slug} />
+                  <Link
+                    href={`/admin/products/delete/${product.slug}`}
+                    scroll={false}
+                  >
+                    <Button size="sm" color="danger">
+                      Eliminar
+                    </Button>
+                  </Link>
                 </div>
               </td>
             </tr>

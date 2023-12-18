@@ -38,6 +38,15 @@
 }
 
 @layer components {
+  .badge {
+    @apply rounded-full px-3 py-1.5 text-xs font-medium;
+  }
+  .badge-primary {
+    @apply bg-indigo-600 text-white;
+  }
+  .badge-secondary {
+    @apply bg-indigo-50 text-indigo-600;
+  }
   .btn {
     @apply rounded-lg px-4 py-2 font-medium transition-colors duration-300;
   }
@@ -52,6 +61,9 @@
   }
   .btn-ghost {
     @apply bg-transparent text-black hover:bg-neutral-100;
+  }
+  .btn-danger {
+    @apply bg-transparent text-red-600 hover:bg-red-50;
   }
   .card {
     @apply rounded-lg bg-white p-4;

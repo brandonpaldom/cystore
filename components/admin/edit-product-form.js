@@ -2,9 +2,9 @@
 
 import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import Button from '@/components/ui/button'
 import { updateProduct } from '@/actions/update-product'
-import { deleteProduct } from '@/actions/delete-product'
 
 export default function EditProductForm({ product }) {
   const router = useRouter()
@@ -17,11 +17,8 @@ export default function EditProductForm({ product }) {
   async function updateAction(formData) {
     await updateProduct(formData, product.slug)
     formRef.current?.reset()
-    close()
-  }
-
-  async function deleteAction() {
-    await deleteProduct(product.slug)
+    router.push('/admin/products')
+    router.refresh()
   }
 
   return (
@@ -63,6 +60,16 @@ export default function EditProductForm({ product }) {
                 <span className="text-neutral-700">Imagen</span>
                 <input type="file" name="image" />
               </label>
+              <div className="flex flex-col gap-2">
+                <span className="text-neutral-700">Imagen actual</span>
+                <Image
+                  src={product.image}
+                  width={200}
+                  height={200}
+                  alt={product.name}
+                  className="rounded-lg border border-neutral-100"
+                />
+              </div>
               <label className="block">
                 <span className="text-neutral-700">Categoría</span>
                 <select
@@ -89,16 +96,11 @@ export default function EditProductForm({ product }) {
                   defaultValue={product.slug}
                 />
               </label>
-              <div className="flex justify-between">
-                <Button color="ghost" formAction={deleteAction}>
-                  Eliminar
+              <div className="flex justify-end gap-2">
+                <Button color="secondary" onClick={close}>
+                  Cerrar
                 </Button>
-                <div className="flex gap-2">
-                  <Button color="secondary" onClick={close}>
-                    Cerrar
-                  </Button>
-                  <Button type="submit">Actualizar</Button>
-                </div>
+                <Button type="submit">Actualizar</Button>
               </div>
             </form>
           </div>

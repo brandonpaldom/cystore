@@ -16,7 +16,8 @@ export default function CreateProductForm() {
   async function formAction(formData) {
     await createProduct(formData)
     formRef.current?.reset()
-    close()
+    router.push('/admin/products')
+    router.refresh()
   }
 
   return (

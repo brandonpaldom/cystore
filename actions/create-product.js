@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { db, storage } from 'lib/firebase/firebase'
 import { doc, setDoc } from 'firebase/firestore'
@@ -30,6 +30,5 @@ export async function createProduct(formData) {
 
   await setDoc(doc(db, 'products', slug), product)
 
-  revalidatePath('/admin/products')
-  redirect('/admin/products')
+  revalidateTag('products')
 }

@@ -16,6 +16,7 @@ export default function Button({
         color === 'primary' && 'btn-primary',
         color === 'secondary' && 'btn-secondary',
         color === 'ghost' && 'btn-ghost',
+        color === 'danger' && 'btn-danger',
         width === 'min' && 'w-max',
         width === 'full' && 'w-full',
       )}
