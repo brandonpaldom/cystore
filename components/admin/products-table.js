@@ -13,27 +13,18 @@ export default async function ProductsTable() {
       <table className="w-full text-sm">
         <thead>
           <tr>
-            {[
-              'Imagen',
-              'Nombre',
-              'Descripción',
-              'Precio',
-              'Categoría',
-              'Acciones',
-            ].map((item) => (
-              <th
-                key={item}
-                className="h-12 border-b px-4 text-left font-normal text-neutral-600"
-              >
-                {item}
-              </th>
-            ))}
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product.id} className="border-t">
-              <td className="p-4">
+              <td>
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -42,20 +33,26 @@ export default async function ProductsTable() {
                   height={64}
                 />
               </td>
-              <td className="p-4">{product.name}</td>
-              <td className="truncate p-4">{product.description}</td>
-              <td className="p-4">{formatCurrency(product.price)}</td>
-              <td className="p-4">{product.category}</td>
-              <td className="flex gap-2 p-4">
-                <Link
-                  href={`/admin/products/edit/${product.slug}`}
-                  scroll={false}
-                >
-                  <Button size="sm" color="secondary">
-                    Editar
-                  </Button>
-                </Link>
-                <DeleteProductButton slug={product.slug} />
+              <td className="max-w-[256px]">
+                <p className="w-full truncate">{product.name}</p>
+              </td>
+              <td className="max-w-[256px]">
+                <p className="w-full truncate">{product.description}</p>
+              </td>
+              <td>{formatCurrency(product.price)}</td>
+              <td>{product.category}</td>
+              <td>
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/admin/products/edit/${product.slug}`}
+                    scroll={false}
+                  >
+                    <Button size="sm" color="secondary">
+                      Editar
+                    </Button>
+                  </Link>
+                  <DeleteProductButton slug={product.slug} />
+                </div>
               </td>
             </tr>
           ))}

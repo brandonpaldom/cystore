@@ -22,10 +22,7 @@ export default async function ProductDetail({ slug }) {
           </p>
           <h1>{product.name}</h1>
           <h2>{formatCurrency(product.price)}</h2>
-          <p className="my-6 text-neutral-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p className="my-6 text-neutral-600">{product.description}</p>
           <AddToCart product={product} />
         </div>
       </div>

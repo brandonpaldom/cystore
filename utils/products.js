@@ -27,6 +27,9 @@ export const getProductsByCategory = async (category) => {
 export const getProductBySlug = async (slug) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/product/${slug}`,
+    {
+      cache: 'no-store',
+    },
   )
 
   if (!res.ok) {
