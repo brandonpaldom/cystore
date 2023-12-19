@@ -1,7 +1,6 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { revalidateTag } from 'next/cache'
 import { db, storage } from 'lib/firebase/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'

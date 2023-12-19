@@ -1,7 +1,6 @@
 import { db, storage } from 'lib/firebase/firebase'
 import { doc, deleteDoc, getDoc } from 'firebase/firestore'
 import { ref, deleteObject } from 'firebase/storage'
-import { revalidatePath, revalidateTag } from 'next/cache'
 
 export async function deleteProduct(slug) {
   const productRef = doc(db, 'products', slug)
