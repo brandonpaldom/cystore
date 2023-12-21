@@ -1,5 +1,5 @@
+import AdminNav from '@/components/admin/admin-nav'
 import NoPermissions from '@/components/admin/no-permissions'
-import AdminNav from '@/components/ui/admin-nav'
 import Footer from '@/components/ui/footer'
 import { Protect } from '@clerk/nextjs'
 
