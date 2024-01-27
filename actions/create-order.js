@@ -1,7 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { db } from 'lib/firebase/firebase'
+import { db } from '@/lib/firebase/firebase'
 import { collection, addDoc } from 'firebase/firestore'
 
 export async function createOrder(formData) {

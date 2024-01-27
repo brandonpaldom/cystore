@@ -1,4 +1,4 @@
-import { db, storage } from 'lib/firebase/firebase'
+import { db, storage } from '@/lib/firebase/firebase'
 import { doc, deleteDoc, getDoc } from 'firebase/firestore'
 import { ref, deleteObject } from 'firebase/storage'
 

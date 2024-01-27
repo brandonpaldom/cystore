@@ -1,4 +1,4 @@
-import { db } from 'lib/firebase/firebase'
+import { db } from '@/lib/firebase/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 
 export async function contact(formData) {
